@@ -6,6 +6,9 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
 
 const StyledRating = styled(Rating)(({ theme }) => ({
+  '& .MuiRating-icon': {
+    fontSize: '40px'
+  },
   '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
     color: theme.palette.action.disabled,
   },
