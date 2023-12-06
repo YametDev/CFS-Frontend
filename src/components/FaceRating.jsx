@@ -6,7 +6,7 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
 
 const StyledRating = styled(Rating)(({ theme }) => ({
-  '& .MuiRating-icon': {
+  '& .MuiSvgIcon-root': {
     fontSize: '40px'
   },
   '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
@@ -60,6 +60,7 @@ export const FaceRating = (props) => {
           IconContainerComponent={IconContainer}
           highlightSelectedOnly
           size="large"
+          style={{ fontSize: '40px' }}
         />
         <Box sx={{ ml: 2 }}> {text} </Box>
       </Box>
