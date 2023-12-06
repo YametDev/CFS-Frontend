@@ -106,6 +106,8 @@ export const UploadPage = () => {
               <ManagerInfo key={index} rkey={index} array={managers} func={setManagers} />
             )}
             <br />
+            <Label text="Google review placeID" />
+            <InputBox value={goolgeId} func={setGoogleId} />
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <SubmitButton color={button} onClick={onSubmitUpload}>
