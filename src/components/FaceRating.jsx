@@ -13,9 +13,7 @@ const StyledRating = styled(Rating)(({ theme }) => ({
     color: theme.palette.action.disabled,
     borderRadius: "50%",
     backgroundColor: '#FFC000'
-    
   },
-  
 }));
 
 const customIcons = {

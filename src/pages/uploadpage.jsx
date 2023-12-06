@@ -105,21 +105,19 @@ export const UploadPage = () => {
             { managers.map( ( manager, index) =>
               <ManagerInfo key={index} rkey={index} array={managers} func={setManagers} />
             )}
-            <br />
+            <Label text="Google review placeID" />
+            <InputBox value={goolgeId} func={setGoogleId} />
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <Label text="Google review placeID" />
-                <InputBox value={goolgeId} func={setGoogleId} />
-                <SubmitButton color={button} onClick={onSubmitUpload}>
-                  Change
-                </SubmitButton>
+                <Checkbox checked={emailAlert} onChange={handleSetEmailAlert}/>Send Email
               </Grid>
               <Grid item xs={6}>
-                <Checkbox checked={emailAlert} onChange={handleSetEmailAlert}/>Send Email
-                <br />
                 <Checkbox checked={smsAlert} onChange={handleSetSmsAlert}/>Send SMS
               </Grid>
             </Grid>
+            <SubmitButton color={button} onClick={onSubmitUpload}>
+              Change
+            </SubmitButton>
           </>
           : <>
             <InputBox type="password" value={password} func={setPassword} />

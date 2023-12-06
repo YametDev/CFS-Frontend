@@ -31,8 +31,7 @@ export const ReviewPage = ( props ) => {
       {logo !== null && <img src={logo} style={{width: '350px'}} alt="logo" />}
       <br />
       <br />
-      <Label text="We will use your valuable feedback to improve our service and make the overall experience better." />
-      <Label text="Please show us how you feel about each part of our service by selecting an expression:" />
+      <Label text="Please show us how you feel about our service areas by selecting an expression:" />
       
       { detailReviewKey.map(val => 
         <FaceRating
@@ -43,6 +42,7 @@ export const ReviewPage = ( props ) => {
         />
       )}
 
+      <Label text="What can we improve?" />
       <InputBox value={review} func={setReview} multiline placeholder="Additional comments or suggestions"/>
 
       <SubmitButton onClick={onClick} color={button} >

@@ -7,7 +7,7 @@ export const BoxContainer = ({ children }) => {
         component="form"
         noValidate
         autoComplete="off"
-        maxWidth="27rem"
+        maxWidth="54rem"
         width="100%"
         sx={{
           p: { xs: "1rem", sm: "2rem" },
