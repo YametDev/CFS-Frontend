@@ -106,18 +106,18 @@ export const UploadPage = () => {
               <ManagerInfo key={index} rkey={index} array={managers} func={setManagers} />
             )}
             <br />
-            <Label text="Google review placeID" />
-            <InputBox value={goolgeId} func={setGoogleId} />
             <Grid container spacing={2}>
               <Grid item xs={6}>
+                <Label text="Google review placeID" />
+                <InputBox value={goolgeId} func={setGoogleId} />
                 <SubmitButton color={button} onClick={onSubmitUpload}>
                   Change
                 </SubmitButton>
               </Grid>
               <Grid item xs={6}>
-                <Checkbox checked={emailAlert} onChange={handleSetEmailAlert} style={{padding: "4px"}} />Send Email
+                <Checkbox checked={emailAlert} onChange={handleSetEmailAlert}/>Send Email
                 <br />
-                <Checkbox checked={smsAlert} onChange={handleSetSmsAlert} style={{padding: "4px"}} />Send SMS
+                <Checkbox checked={smsAlert} onChange={handleSetSmsAlert}/>Send SMS
               </Grid>
             </Grid>
           </>
