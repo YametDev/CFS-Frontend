@@ -6,7 +6,7 @@ import ColorPicker from 'mui-color-picker'
 import { companyDetail } from "../redux/actions";
 import { ManagerInfo } from "../components/ManagerInfo";
 import { sampleManagerInfo } from "../constants";
-import { Checkbox, Grid } from "@mui/material";
+import { Alert, Checkbox, Grid, Snackbar } from "@mui/material";
 
 export const UploadPage = () => {
   const params = useParams();
@@ -15,6 +15,7 @@ export const UploadPage = () => {
   const [lock, setLock] = useState(false);
   const [password, setPassword] = useState('');
   const [loaded, setLoaded] = useState(false);
+  const [open, setOpen] = useState(false);
   
   const [star, setStar] = useState('#1677ff');
   const [button, setButton] = useState('#1677ff');
@@ -23,6 +24,10 @@ export const UploadPage = () => {
   const [emailAlert, setEmailAlert] = useState(false);
   const [smsAlert, setSmsAlert] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(0);
+
+  const handleClose = () => {
+    setOpen(false); 
+  }
 
   const handleUnlock = () => {
     if(password === "Leavefeedback2024$") {
@@ -66,7 +71,10 @@ export const UploadPage = () => {
   }
 
   useEffect(() => {
-    if(uploadStatus) setTimeout(setUploadStatus, 3000, 0);
+    if(uploadStatus) {
+      setOpen(true);
+      setTimeout(setUploadStatus, 3500, 0);
+    }
   }, [uploadStatus]);
 
   useEffect(() => {
@@ -127,8 +135,11 @@ export const UploadPage = () => {
               <SubmitButton color={button} onClick={onSubmitUpload}>
                 Change
               </SubmitButton>
-              {uploadStatus===1 && <p>Failed to save.</p>}
-              {uploadStatus===2 && <p>Successfully saved!</p>}
+              <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity={uploadStatus === 2 ? 'success' : 'error'} sx={{ width: '100%' }}>
+                  {uploadStatus === 1 ? 'Failed to save.' : 'Successfully saved!'}
+                </Alert>
+              </Snackbar>
             </>
             : <>
               <InputBox type="password" value={password} func={setPassword} />
