@@ -102,7 +102,7 @@ export const ClientPage = () => {
   return (
     <PageContainer>
       <PageBox>
-        {status === 0 && (
+        {(status === 0 && exist) && (
           <Homepage
             rating={rating}
             setRating={setRating}

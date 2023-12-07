@@ -36,15 +36,12 @@ export const receiveRecent = (company, count) => dispatch => {
   })
 }
 
-export const companyDetail = (detail) => {
+export const companyDetail = (detail, callback) => {
   console.log(detail);
   axios
     .post("/company/detail", detail)
     .then((response) => {
-      console.log(response.data.result ? "Successed!" : "Failed.");
-      if (response.data.result) {
-
-      }
+      callback(response.data.result);
     })
     .catch((error) => {
       console.error(error);
