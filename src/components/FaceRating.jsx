@@ -45,7 +45,8 @@ export const FaceRating = (props) => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          my: 1
+          py: 1,
+          borderTop: '1px solid lightgray;'
         }}
       >
         <StyledRating

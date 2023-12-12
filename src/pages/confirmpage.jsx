@@ -11,7 +11,7 @@ export const ConfirmPage = ( props ) => {
       {logo !== null && <img src={logo} style={{width: '350px'}} alt="logo" />}
       <br />
       <br />
-      <Label text="We received your feedback. Thanks! 🙂" />
+      <Label text="We appreciate your feedback! 🙂" />
     </BoxContainer>
   );
 };

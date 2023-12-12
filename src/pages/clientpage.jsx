@@ -9,10 +9,7 @@ import {
   InfoPage,
   ConfirmPage,
 } from "./";
-import {
-  PageContainer,
-  PageBox,
-} from "../components";
+import { PageContainer, PageBox } from "../components";
 import { useNavigate, useParams } from "react-router-dom";
 import { exists } from "../redux/actions/user";
 
@@ -90,19 +87,19 @@ export const ClientPage = () => {
         setStar(result.star);
         setButton(result.button);
       },
-      (result) => setExist(result + 1),
+      (result) => setExist(result + 1)
     );
   }, [params.id]);
 
   useEffect(() => {
-    console.log("EXIST", exist);
-    if(exist === 1) navigate("/" + params.id + "/admin");
+    // console.log("EXIST", exist);
+    if (exist === 1) navigate("/" + params.id + "/admin");
   }, [exist, navigate, params.id]);
 
   return (
     <PageContainer>
       <PageBox>
-        {(status === 0 && exist) && (
+        {status === 0 && exist === 2 && (
           <Homepage
             rating={rating}
             setRating={setRating}
@@ -113,15 +110,15 @@ export const ClientPage = () => {
             button={button}
           />
         )}
-        {status === 1 && (
-          <GoogleReviewPage 
-            hasGoogle={google} 
-            button={button} 
+        {status === 1 && exist === 2 && (
+          <GoogleReviewPage
+            hasGoogle={google}
+            button={button}
             logo={logo}
             onSubmit={onSubmitReview}
           />
         )}
-        {status === 2 && (
+        {status === 2 && exist === 2 && (
           <ReviewPage
             logo={logo}
             rating={drating}
@@ -132,7 +129,7 @@ export const ClientPage = () => {
             button={button}
           />
         )}
-        {status === 3 && (
+        {status === 3 && exist === 2 && (
           <InfoPage
             logo={logo}
             name={sign}
@@ -145,7 +142,7 @@ export const ClientPage = () => {
             button={button}
           />
         )}
-        {status === 4 && (
+        {status === 4 && exist === 2 && (
           <ConfirmPage onSubmit={onSubmitConfirm} logo={logo} />
         )}
       </PageBox>
