@@ -31,8 +31,8 @@ export const ReviewPage = ( props ) => {
       {logo !== null && <img src={logo} style={{width: '350px'}} alt="logo" />}
       <br />
       <br />
-      <Label text="How do you feel about our services?
-(Select an expression for each)" />
+      <Label text="How was our service?" lineHeight={0} />
+      <Label text="(Pick a reaction for each)" lineHeight={0} fontSize={15} fontWeight={500} />
       
       { detailReviewKey.map(val => 
         <FaceRating

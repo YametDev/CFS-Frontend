@@ -16,11 +16,12 @@ export const UploadPage = () => {
   const [password, setPassword] = useState('');
   const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = useState(false);
+  const [display, setDisplay] = useState('');
   
   const [star, setStar] = useState('#1677ff');
   const [button, setButton] = useState('#1677ff');
   const [managers, setManagers] = useState(sampleManagerInfo);
-  const [goolgeId, setGoogleId] = useState('');
+  const [googleId, setGoogleId] = useState('');
   const [emailAlert, setEmailAlert] = useState(false);
   const [smsAlert, setSmsAlert] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(0);
@@ -41,10 +42,11 @@ export const UploadPage = () => {
     companyDetail(
       {
         company: params.id,
+        display: display,
         star: star,
         button: button,
         manager: managers,
-        googleId: 'http://search.google.com/local/writereview?placeid=' + goolgeId,
+        googleId: 'http://search.google.com/local/writereview?placeid=' + googleId,
         logo: logo,
         alertSMS: smsAlert,
         alertEmail: emailAlert
@@ -88,6 +90,7 @@ export const UploadPage = () => {
         setManagers(result.managers);
         setEmailAlert(result.alertEmail);
         setSmsAlert(result.alertSMS);
+        setDisplay(result.display);
       },
       () => setLoaded(true)
     );
@@ -105,25 +108,38 @@ export const UploadPage = () => {
               <br />
               <input type="file" accept="image/*" onChange={handleImageUpload} />
               
-              <Label text="Star Color" />
-              <ColorPicker
-                id="starColorPicker"
-                value={star}
-                onChange={setStar}
-                label={star}
-              />
-              <Label text="Button Color" />
-              <ColorPicker
-                id="buttonColorPicker"
-                value={button}
-                onChange={color => setButton(color)}
-                label={button}
-              />
+              <Label text="Company Name" />
+              <InputBox value={display} func={setDisplay} />
+
+              
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Label text="Star Color" />
+                  <ColorPicker
+                    id="starColorPicker"
+                    value={star}
+                    onChange={setStar}
+                    label={star}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Label text="Button Color" />
+                  <ColorPicker
+                    id="buttonColorPicker"
+                    value={button}
+                    onChange={color => setButton(color)}
+                    label={button}
+                    fullWidth
+                  />
+                </Grid>
+              </Grid>
+              
               { managers.map( ( manager, index) =>
                 <ManagerInfo key={index} rkey={index} array={managers} func={setManagers} />
               )}
               <Label text="Google review placeID" />
-              <InputBox value={goolgeId} func={setGoogleId} />
+              <InputBox value={googleId} func={setGoogleId} />
               <Grid container spacing={2}>
                 <Grid item xs={6}>
                   <Checkbox checked={emailAlert} onChange={handleSetEmailAlert}/>Send Email

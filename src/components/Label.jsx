@@ -16,7 +16,7 @@ export const Label = (props) => {
         lineHeight: lineHeight,
       }}
     >
-      {text}
+      {text.split('\n').map(val => <p>{val}</p>)}
     </Typography>
   )
 }
