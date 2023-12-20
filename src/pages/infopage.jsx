@@ -18,7 +18,7 @@ export const InfoPage = ( props ) => {
       {logo !== null && <img src={logo} style={{width: '350px'}} alt="logo" />}
       <br />
       <br />
-      <Label text="If you want the manager to follow up with you, please leave your contact information. (optional)" />
+      <Label text="Leave your contact info for follow ups. (optional)" />
       <Label text="" />
 
       <Label text="Name" />
