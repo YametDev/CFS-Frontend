@@ -9,3 +9,4 @@ export * from "./InputBoxPhone";
 export * from "./PageContainer";
 export * from "./PageBox";
 export * from "./Footer";
+export * from "./Styles";

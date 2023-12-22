@@ -61,3 +61,12 @@ export const title = [
   'Value and Prices',
   'Quality of Products'
 ];
+
+export const productPlans = [
+  {
+    id: "price_1OP7YAEAnKVKf2tCxFzaRTN9",
+    name: "Standard",
+    description: "For small business",
+    price: 10
+  },
+];

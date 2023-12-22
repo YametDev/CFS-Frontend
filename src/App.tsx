@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "./redux/reducers";
 import { AdminPage, UploadPage, ClientPage, RegisterPage, LandingPage } from "./pages";
 import { Footer } from "./components";
+import { StripePage } from "./pages/stripepage";
 
 const theme = createTheme({
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/:id/admin/" element={<UploadPage />} />
                 <Route path="/:id/" element={<ClientPage />} />
                 <Route path="/admin" element={<RegisterPage />} />
+                <Route path="/payments" element={<StripePage />} />
               </Routes>
             </BrowserRouter>
           </Provider>
