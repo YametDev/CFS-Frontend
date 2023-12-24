@@ -28,7 +28,7 @@ export const ReviewPage = ( props ) => {
   return (
     <BoxContainer>
       <br />
-      {logo !== null && <img src={logo} style={{width: '350px'}} alt="logo" />}
+      {(logo !== null && logo!==undefined && logo!=='') && <img src={logo} style={{width: '350px'}} alt="logo" />}
       <br />
       <br />
       <Label text="How was our service?" lineHeight={0} />
