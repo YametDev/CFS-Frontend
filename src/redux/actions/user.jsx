@@ -28,8 +28,8 @@ export const exists = (params, callback, status) => {
   axios
     .post("/company/exists", { company: params })
     .then((response) => {
-      callback(response.data.data);
+      if(response.data.result) callback(response.data.data);
       status(response.data.result);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(`ERROR ----------------------->\n${error}`));
 };

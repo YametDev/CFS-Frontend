@@ -21,9 +21,7 @@ export const Footer = (props) => {
         component="footer"
       >
         <Typography margin="auto" variant="body2" color="text.secondary" align="center" >
-          {"Copyright © "}
-          {"LeaveFeedback "}
-          {new Date().getFullYear()}
+          {`Copyright © LeaveFeedback ${new Date().getFullYear()}`}
         </Typography>
       </Box>
     </>

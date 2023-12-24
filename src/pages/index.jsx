@@ -8,3 +8,4 @@ export * from './infopage';
 export * from './registerpage';
 export * from './confirmpage';
 export * from './uploadpage';
+export * from './stripepage';

@@ -54,10 +54,7 @@ export const ClientPage = () => {
   };
 
   const onSubmitConfirm = () => {
-    dispatch({
-      type: "Status",
-      payload: 0,
-    });
+    dispatch({ type: "Status", payload: 0, });
   };
 
   const onSubmitInfo = () => {

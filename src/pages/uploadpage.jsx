@@ -7,14 +7,30 @@ import { companyDetail } from "../redux/actions";
 import { ManagerInfo } from "../components/ManagerInfo";
 import { sampleManagerInfo } from "../constants";
 import { Alert, Checkbox, Grid, Snackbar } from "@mui/material";
+import styled from "styled-components";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useDispatch, useSelector } from "react-redux";
+
+const VisuallyHiddenInput = styled('input')({
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  whiteSpace: 'nowrap',
+  cursor: "pointer",
+  opacity: 0,
+});
 
 export const UploadPage = () => {
   const params = useParams();
+  const dispatch = useDispatch();
 
-  const [logo, setLogo] = useState('');
-  const [lock, setLock] = useState(false);
-  const [password, setPassword] = useState('');
   const [loaded, setLoaded] = useState(false);
+  const locked = useSelector(state => state.login);
+  const [logo, setLogo] = useState('');
+  const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false);
   const [display, setDisplay] = useState('');
   
@@ -32,9 +48,11 @@ export const UploadPage = () => {
 
   const handleUnlock = () => {
     if(password === "Leavefeedback2024$") {
-      setLock(true);
+      dispatch({type: "Login", payload: true});
     } else {
-      alert("Wrong password !");
+      const res = managers.some(manager => manager.email === password);
+      if(res) dispatch({type: "Login", payload: true});
+      else alert("Wrong password !");
     }
   }
 
@@ -100,13 +118,25 @@ export const UploadPage = () => {
     <PageContainer>
       { loaded && 
         <BoxContainer>
-          { lock
-              ? <>
+          { locked ?
+            <>
+              <div style={{ display:"flex", gap:"10px", fontSize: '18px', justifyContent:'end', padding:'20px' }}>
+                <a href={`/${params.id}/dashboard`}>Dashboard</a>
+                <span> / </span>
+                <a href={`/${params.id}/admin`}>Admin</a>
+                <span> / </span>
+                <a href='/payments'>Payment</a>
+              </div>
+              {(logo !== undefined && logo !== null && logo !== '')
+                ? <img src={logo} style={{width: '350px'}} alt="Please upload company logo." />
+                : <Label text="Please upload company logo." />
+              }
               <br />
-              {logo !== undefined && <img src={logo} style={{width: '350px'}} alt="Please upload company logo." />}
               <br />
-              <br />
-              <input type="file" accept="image/*" onChange={handleImageUpload} />
+              <SubmitButton color={button} variant="contained" startIcon={<CloudUploadIcon />}>
+                Choose Logo Picture
+                <VisuallyHiddenInput type="file" accept="image/*" onChange={handleImageUpload}/>
+              </SubmitButton>
               
               <Label text="Company Name" />
               <InputBox value={display} func={setDisplay} />
@@ -149,7 +179,7 @@ export const UploadPage = () => {
                 </Grid>
               </Grid>
               <SubmitButton color={button} onClick={onSubmitUpload}>
-                Change
+                Save Changes
               </SubmitButton>
               <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={uploadStatus === 2 ? 'success' : 'error'} sx={{ width: '100%' }}>
