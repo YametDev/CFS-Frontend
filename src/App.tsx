@@ -20,11 +20,12 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<LandingPage />} />
-              <Route path="/:id/dashboard/" element={<AdminPage />} />
-              <Route path="/:id/admin/" element={<UploadPage />} />
               <Route path="/:id/" element={<ClientPage />} />
+              <Route path="/:id/dashboard/" element={<AdminPage />} />
               <Route path="/admin" element={<RegisterPage />} />
+              <Route path="/:id/admin/" element={<UploadPage />} />
               <Route path="/payments" element={<StripePage />} />
+              <Route path="/:id/payments" element={<StripePage />} />
             </Routes>
           </BrowserRouter>
         </Provider>

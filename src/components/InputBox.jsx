@@ -27,7 +27,6 @@ export const InputBox = (props) => {
         required={true}
         error={error}
         fullWidth
-        defaultValue=""
         value={value}
         color="primary"
         onChange={(event) => {

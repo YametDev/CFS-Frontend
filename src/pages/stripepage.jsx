@@ -4,6 +4,7 @@
 // import { subscribe } from "../redux/actions";
 // import StripeCheckout from "react-stripe-checkout";
 
+import { useParams } from "react-router-dom";
 import {
   BoxContainer,
   // CurrencySymbol,
@@ -40,19 +41,54 @@ export const StripePage = () => {
   //     }
   //   });
   // };
+  const params = useParams();
 
   return (
     <PageContainer>
-      <BoxContainer >
-        <p style={{textAlign: 'center'}}>
-          Manage your account subscription on the payment portal, powered by <b>stripe</b> 
+      <BoxContainer>
+        {params.id && (
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              fontSize: "18px",
+              justifyContent: "end",
+              padding: "20px",
+              color: "black",
+              textDecoration: "none",
+            }}
+          >
+            <a
+              style={{ textDecoration: "none" }}
+              href={`/${params.id}/dashboard`}
+            >
+              Dashboard
+            </a>
+            <span> / </span>
+            <a style={{ textDecoration: "none" }} href={`/${params.id}/admin`}>
+              Admin
+            </a>
+            <span> / </span>
+            <a
+              style={{ textDecoration: "none" }}
+              href={`/${params.id}/payments`}
+            >
+              <b>
+                <u>Payment</u>
+              </b>
+            </a>
+          </div>
+        )}
+        <p style={{ textAlign: "center" }}>
+          Manage your account subscription on the payment portal, powered by{" "}
+          <b>stripe</b>
         </p>
-        <p style={{textAlign: 'center'}}>
+        <p style={{ textAlign: "center" }}>
           <a href="https://billing.stripe.com/p/login/bIY7vA6ucggL15m4gg">
             <u>https://billing.stripe.com/p/login/bIY7vA6ucggL15m4gg</u>
           </a>
         </p>
-      
+
         {/* <SubscriptionPlansWrapper>
           <Grid container spacing={2} justifyContent="center" alignItems="center">
             {productPlans.map((product, i) => (

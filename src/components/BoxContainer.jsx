@@ -4,7 +4,6 @@ export const BoxContainer = ({ children }) => {
   return(
     <>
       <Box
-        component="form"
         noValidate
         autoComplete="off"
         maxWidth="54rem"

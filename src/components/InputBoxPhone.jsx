@@ -87,7 +87,6 @@ export const InputBoxPhone = (props) => {
         required={true}
         error={error}
         fullWidth
-        defaultValue=""
         value={values.textmask}
         color="primary"
         onChange={(event) => {
