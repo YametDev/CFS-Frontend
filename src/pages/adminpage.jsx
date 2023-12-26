@@ -67,8 +67,8 @@ export const AdminPage = () => {
         setLogo(result.logo);
         setButton(result.button);
         setManagers(result.managers);
-        let cookie = decodeURIComponent(document.cookie).split(';').find(c => c.trim().startsWith('lfologin=')).slice(9);
-        if(cookie !== null && cookie !== undefined && cookie !== '') unlockWithPassword(cookie);
+        let cookie = decodeURIComponent(document.cookie).split(';').find(c => c.trim().startsWith('lfologin='));
+        if(cookie !== null && cookie !== undefined && cookie !== '') unlockWithPassword(cookie.slice(9));
       },
       (result) => {
         if (result) setLoaded(true);

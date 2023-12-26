@@ -107,8 +107,8 @@ export const UploadPage = () => {
         setEmailAlert(result.alertEmail);
         setSmsAlert(result.alertSMS);
         setDisplay(result.display);
-        let cookie = decodeURIComponent(document.cookie).split(';').find(c => c.trim().startsWith('lfologin=')).slice(9);
-        if(cookie !== null && cookie !== undefined && cookie !== '') unlockWithPassword(cookie);
+        let cookie = decodeURIComponent(document.cookie).split(';').find(c => c.trim().startsWith('lfologin='));
+        if(cookie !== null && cookie !== undefined && cookie !== '') unlockWithPassword(cookie.slice(9));
       },
       () => setLoaded(true)
     );
