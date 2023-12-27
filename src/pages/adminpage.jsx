@@ -194,7 +194,6 @@ export const AdminPage = () => {
               <BarChart
                 width={350}
                 height={270}
-                viewBox={{x: -70, y: 0, width: 450, height: 270}}
                 series={detail}
                 yAxis={[
                   {
