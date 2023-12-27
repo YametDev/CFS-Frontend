@@ -39,19 +39,24 @@ export const UploadPage = () => {
   };
 
   const handleUnlock = () => {
-    document.cookie = `lfologin=${password};`;
-    unlockWithPassword(password);
+    document.cookie = `lfologin=${password};path=/`;
+    if(!unlockWithPassword(password, managers)){
+      alert('Wrong password !');
+    }
   };
 
-  const unlockWithPassword = password => {
+  const unlockWithPassword = (password, managers) => {
     if (password === "Leavefeedback2024$") {
       dispatch({ type: "Login", payload: true });
+      return true;
     } else {
       const res = managers.some((manager) => manager.email === password);
-      if (res) dispatch({ type: "Login", payload: true });
-      else alert("Wrong password !");
+      if (res) {
+        dispatch({ type: "Login", payload: true });
+        return true;
+      } else return false;
     }
-  }
+  };
 
   const onSubmitUpload = () => {
     companyDetail(
@@ -107,8 +112,11 @@ export const UploadPage = () => {
         setEmailAlert(result.alertEmail);
         setSmsAlert(result.alertSMS);
         setDisplay(result.display);
-        let cookie = decodeURIComponent(document.cookie).split(';').find(c => c.trim().startsWith('lfologin='));
-        if(cookie !== null && cookie !== undefined && cookie !== '') unlockWithPassword(cookie.slice(9));
+        let cookie = decodeURIComponent(document.cookie)
+          .split(";")
+          .find((c) => c.trim().startsWith("lfologin="));
+        if (cookie !== null && cookie !== undefined && cookie !== "")
+          unlockWithPassword(cookie.slice(9), result.managers);
       },
       () => setLoaded(true)
     );
@@ -164,10 +172,21 @@ export const UploadPage = () => {
               <br />
               <br />
               <div>
-                <button onClick={() => document.getElementById('getFile').click()}>Choose Logo Picture</button>
-                <input type='file' id="getFile" style={{display:'none'}} accept="image/*" onChange={handleImageUpload}/>
+                <button
+                  onClick={() => document.getElementById("getFile").click()}
+                >
+                  Choose Logo Picture
+                </button>
+                <input
+                  type="file"
+                  id="getFile"
+                  style={{ display: "none" }}
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                />
               </div>
-              {(logo === undefined || logo === null || logo === "") && ' No image has selected'}
+              {(logo === undefined || logo === null || logo === "") &&
+                " No image has selected"}
 
               <Label text="Company Name" />
               <InputBox value={display} func={setDisplay} />

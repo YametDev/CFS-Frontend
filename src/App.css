@@ -45,7 +45,7 @@
   border-spacing: 0px;
   text-align: center;
 }
-.cfstable .cfsrow:first-child {
+.cfstable thead.cfsrow {
   background: lightgray;
   font-weight: 700;
 

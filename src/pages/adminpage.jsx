@@ -43,19 +43,29 @@ export const AdminPage = () => {
   const [managers, setManagers] = useState(sampleManagerInfo);
 
   const handleUnlock = () => {
-    document.cookie = `lfologin=${password};`;
-    unlockWithPassword(password);
+    document.cookie = `lfologin=${password};path=/`;
+    if(!unlockWithPassword(password, managers)){
+      alert('Wrong password !');
+    }
   };
 
-  const unlockWithPassword = password => {
+  const unlockWithPassword = (password, managers) => {
     if (password === "Leavefeedback2024$") {
       dispatch({ type: "Login", payload: true });
+      return true;
     } else {
       const res = managers.some((manager) => manager.email === password);
-      if (res) dispatch({ type: "Login", payload: true });
-      else alert("Wrong password !");
+      if (res) {
+        dispatch({ type: "Login", payload: true });
+        return true;
+      } else return false;
     }
-  }
+  };
+
+  useEffect(() => {
+    const shape = document.getElementsByTagName("svg")[1];
+    shape?.setAttribute("viewBox", "-70 0 350 270");
+  })
 
   useEffect(() => {
     dispatch(receive(params.id));
@@ -68,7 +78,7 @@ export const AdminPage = () => {
         setButton(result.button);
         setManagers(result.managers);
         let cookie = decodeURIComponent(document.cookie).split(';').find(c => c.trim().startsWith('lfologin='));
-        if(cookie !== null && cookie !== undefined && cookie !== '') unlockWithPassword(cookie.slice(9));
+        if(cookie !== null && cookie !== undefined && cookie !== '') unlockWithPassword(cookie.slice(9), result.managers);
       },
       (result) => {
         if (result) setLoaded(true);
@@ -184,6 +194,7 @@ export const AdminPage = () => {
               <BarChart
                 width={350}
                 height={270}
+                viewBox={{x: -70, y: 0, width: 450, height: 270}}
                 series={detail}
                 yAxis={[
                   {
