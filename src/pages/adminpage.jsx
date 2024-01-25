@@ -44,8 +44,8 @@ export const AdminPage = () => {
 
   const handleUnlock = () => {
     document.cookie = `lfologin=${password};path=/`;
-    if(!unlockWithPassword(password, managers)){
-      alert('Wrong password !');
+    if (!unlockWithPassword(password, managers)) {
+      alert("Wrong password !");
     }
   };
 
@@ -64,8 +64,8 @@ export const AdminPage = () => {
 
   useEffect(() => {
     const shape = document.getElementsByTagName("svg")[1];
-    shape?.setAttribute("viewBox", "-70 0 350 270");
-  })
+    shape?.setAttribute("viewBox", "45 0 375 270");
+  });
 
   useEffect(() => {
     dispatch(receive(params.id));
@@ -77,8 +77,11 @@ export const AdminPage = () => {
         setLogo(result.logo);
         setButton(result.button);
         setManagers(result.managers);
-        let cookie = decodeURIComponent(document.cookie).split(';').find(c => c.trim().startsWith('lfologin='));
-        if(cookie !== null && cookie !== undefined && cookie !== '') unlockWithPassword(cookie.slice(9), result.managers);
+        let cookie = decodeURIComponent(document.cookie)
+          .split(";")
+          .find((c) => c.trim().startsWith("lfologin="));
+        if (cookie !== null && cookie !== undefined && cookie !== "")
+          unlockWithPassword(cookie.trim().slice(9), result.managers);
       },
       (result) => {
         if (result) setLoaded(true);
@@ -135,7 +138,7 @@ export const AdminPage = () => {
               }}
             >
               <a
-                style={{textDecoration: "none" }}
+                style={{ textDecoration: "none" }}
                 href={`/${params.id}/dashboard`}
               >
                 <b>
@@ -143,19 +146,24 @@ export const AdminPage = () => {
                 </b>
               </a>
               <span> / </span>
-              <a style={{textDecoration: "none" }} href={`/${params.id}/admin`}>
+              <a
+                style={{ textDecoration: "none" }}
+                href={`/${params.id}/admin`}
+              >
                 Admin
               </a>
               <span> / </span>
               <a
-                style={{textDecoration: "none" }}
+                style={{ textDecoration: "none" }}
                 href={`/${params.id}/payments`}
               >
                 Payment
               </a>
             </div>
-            {logo !== null && logo !== undefined && logo !== "" && (
-              <img src={logo} style={{ width: "350px" }} alt="logo" />
+            {logo !== null && logo !== undefined && logo !== "" && (    
+              <div style={{textAlign: "left"}}>
+                <img src={logo} style={{ width: "350px" }} alt="logo" />
+              </div>
             )}
             <h1>Feedback Dashboard</h1>
             <h2>Results Summary:</h2>
@@ -197,10 +205,13 @@ export const AdminPage = () => {
                 series={detail}
                 yAxis={[
                   {
+                    id: "yAxis",
                     scaleType: "band",
                     data: title,
                   },
                 ]}
+                leftAxis={null}
+                rightAxis={"yAxis"}
                 xAxis={[
                   {
                     label: "Percentage (%)",

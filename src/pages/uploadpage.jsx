@@ -40,12 +40,13 @@ export const UploadPage = () => {
 
   const handleUnlock = () => {
     document.cookie = `lfologin=${password};path=/`;
-    if(!unlockWithPassword(password, managers)){
-      alert('Wrong password !');
+    if (!unlockWithPassword(password, managers)) {
+      alert("Wrong password !");
     }
   };
 
   const unlockWithPassword = (password, managers) => {
+    console.log(password, managers);
     if (password === "Leavefeedback2024$") {
       dispatch({ type: "Login", payload: true });
       return true;
@@ -116,7 +117,7 @@ export const UploadPage = () => {
           .split(";")
           .find((c) => c.trim().startsWith("lfologin="));
         if (cookie !== null && cookie !== undefined && cookie !== "")
-          unlockWithPassword(cookie.slice(9), result.managers);
+          unlockWithPassword(cookie.trim().slice(9), result.managers);
       },
       () => setLoaded(true)
     );

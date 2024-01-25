@@ -9,3 +9,8 @@ export * from './registerpage';
 export * from './confirmpage';
 export * from './uploadpage';
 export * from './stripepage';
+export * from './selectpage';
+export * from './menupage';
+export * from './dealpage';
+export * from './gamepage';
+export * from './jobpage';
