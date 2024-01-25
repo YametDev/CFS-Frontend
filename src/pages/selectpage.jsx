@@ -15,26 +15,29 @@ export const SelectPage = () => {
     {url: "/games", title: "Play Games"},
     {url: "/jobs", title: "We're Hiring!"},
   ];
+  const [exist, setExist] = useState(0);
 
   useEffect(() => {
     exists(params.id, data => {
       setLogo(data.logo);
       setButton(data.button);
-    })
+    }, status => setExist(status + 1));
   }, [params.id])
   return (
     <PageContainer>
       <PageBox>
-        <BoxContainer>
-          <div style={{textAlign: "center"}}>
-            {(logo !== null && logo!==undefined && logo!=='') && <img src={logo} style={{width: '350px'}} alt="logo" />}
-          </div>
-          {buttons.map(btn => 
-            <SubmitButton color={button} onClick={() => navigate(`/${params.id}${btn.url}`)} >
-              {btn.title}
-            </SubmitButton>
-          )}
-        </BoxContainer>
+        {(exist === 2) && 
+          <BoxContainer>
+            <div style={{textAlign: "center"}}>
+              {(logo !== null && logo!==undefined && logo!=='') && <img src={logo} style={{width: '350px'}} alt="logo" />}
+            </div>
+            {buttons.map(btn => 
+              <SubmitButton color={button} onClick={() => navigate(`/${params.id}${btn.url}`)} >
+                {btn.title}
+              </SubmitButton>
+            )}
+          </BoxContainer>
+        }
       </PageBox>
     </PageContainer>
   )
