@@ -48,7 +48,10 @@
 .cfstable thead.cfsrow {
   background: lightgray;
   font-weight: 700;
+}
 
+.cfstable p {
+  margin: 0px;
 }
 
 .cfstable .cfsrow:first-child .cfscell {

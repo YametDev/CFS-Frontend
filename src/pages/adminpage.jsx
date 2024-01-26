@@ -242,13 +242,16 @@ export const AdminPage = () => {
                     <tr key={index} className="cfsrow">
                       <td className="cfscell">{val.rating}</td>
                       <td className="cfscell">
-                        {val.review} <br /> {val.review_text}
+                        <p>{val.review}</p>
+                        <p>{val.review_text}</p>
                       </td>
                       <td className="cfscell">{val.createdAt.time}</td>
                       <td className="cfscell">{val.createdAt.date}</td>
                       {isPaid ? (
                         <td className="cfscell">
-                          {val.name} <br /> {val.email} <br /> {val.phone}
+                          <p>{val.name}</p>
+                          <p><a href={`mailto:${val.email}`}>{val.email}</a></p>
+                          <p><a href={`tel:${val.phone}`}>{val.phone}</a></p>
                         </td>
                       ) : (
                         <td className="cfscell" style={{ fontWeight: "bold" }}>

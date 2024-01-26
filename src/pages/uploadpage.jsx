@@ -187,7 +187,7 @@ export const UploadPage = () => {
                 />
               </div>
               {(logo === undefined || logo === null || logo === "") &&
-                " No image has selected"}
+                " No image has been selected"}
 
               <Label text="Company Name" />
               <InputBox value={display} func={setDisplay} />
