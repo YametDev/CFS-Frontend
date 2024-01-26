@@ -14,3 +14,4 @@ export * from './menupage';
 export * from './dealpage';
 export * from './gamepage';
 export * from './jobpage';
+export * from './editpage';
